@@ -1,0 +1,23 @@
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.menu > div {
+  padding: 20px;
+  background-color: #1976d249;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.menu > div:hover {
+  background-color: #1976d28e;
+}
+
+.heroes-app {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
