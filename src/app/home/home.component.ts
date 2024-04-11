@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HeroesComponent } from '../heroes/heroes.component';
 import { Hero } from '../herostypes';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { HeroService } from '../hero.service';
 
 enum DisplaySection {
   Dashboard,
@@ -35,41 +36,14 @@ enum DisplaySection {
 export class HomeComponent {
   DisplaySection = DisplaySection;
   currentDisplay = DisplaySection.Heroes;
+  heroServices = inject(HeroService);
+  heroesList: Hero[];
 
-  heroesList: Hero[] = [
-    {
-      id: 1,
-      name: 'Batman',
-      powers: ['Intelligence', 'Wealth', 'Martial Arts'],
-      city: 'Gotham',
-    },
-    {
-      id: 2,
-      name: 'Wonder Woman',
-      powers: ['Super strength', 'Flight', 'Lasso of Truth'],
-      city: 'Themyscira',
-    },
-    {
-      id: 3,
-      name: 'Spider-Man',
-      powers: ['Spider-sense', 'Wall-crawling', 'Super strength'],
-      city: 'New York',
-    },
-    {
-      id: 4,
-      name: 'Iron Man',
-      powers: ['Genius level intellect', 'Powered armor suit', 'Flight'],
-      city: 'New York',
-    },
-    {
-      id: 5,
-      name: 'Thor',
-      powers: ['God of Thunder', 'Super strength', 'Immortality'],
-      city: 'Asgard',
-    },
-  ];
+  constructor() {
+    this.heroesList = this.heroServices.getHeroes();
+    console.log(this.heroServices.getHeroesById(1));
+  }
 
-  constructor() {}
   display(section: DisplaySection) {
     this.currentDisplay = section;
   }

@@ -1,13 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { Hero } from '../herostypes';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-heroes',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   template: `
-    <div class="hero-card">
+    <div class="hero-card" [routerLink]="['/detail', hero.id]">
       <div>ID: {{ hero.id }}</div>
       <div>Name: {{ hero.name }}</div>
       <div>City: {{ hero.city }}</div>
@@ -23,8 +24,4 @@ import { CommonModule } from '@angular/common';
 })
 export class HeroesComponent {
   @Input() hero!: Hero;
-
-  ngOnInit() {
-    console.log(this.hero);
-  }
 }
