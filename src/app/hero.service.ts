@@ -46,4 +46,16 @@ export class HeroService {
   getHeroesById(id: number) {
     return this.heroesList.find((hero) => hero.id === id);
   }
+
+  modifyHero(id: number, name: string, newCity: string, power: [string]) {
+    const index = this.heroesList.findIndex((hero) => hero.id === id);
+    if (index !== -1) {
+      this.heroesList[index] = {
+        id: index + 1,
+        name: name,
+        powers: power,
+        city: newCity,
+      };
+    }
+  }
 }

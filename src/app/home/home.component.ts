@@ -41,7 +41,6 @@ export class HomeComponent {
 
   constructor() {
     this.heroesList = this.heroServices.getHeroes();
-    console.log(this.heroServices.getHeroesById(1));
   }
 
   display(section: DisplaySection) {
