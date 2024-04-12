@@ -11,21 +11,21 @@ export class HeroService {
       name: 'Batman',
       powers: ['Intelligence', 'Wealth', 'Martial Arts'],
       city: 'Gotham',
-      favorite: false,
+      favorite: true,
     },
     {
       id: 2,
       name: 'Wonder Woman',
       powers: ['Super strength', 'Flight', 'Lasso of Truth'],
       city: 'Themyscira',
-      favorite: false,
+      favorite: true,
     },
     {
       id: 3,
       name: 'Spider-Man',
       powers: ['Spider-sense', 'Wall-crawling', 'Super strength'],
       city: 'New York',
-      favorite: false,
+      favorite: true,
     },
     {
       id: 4,
@@ -78,5 +78,9 @@ export class HeroService {
     } else {
       hero.favorite = !hero.favorite;
     }
+  }
+
+  getFavoriteHero() {
+    return this.heroesList.filter((hero) => hero.favorite === true);
   }
 }

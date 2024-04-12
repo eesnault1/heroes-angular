@@ -22,7 +22,9 @@ enum DisplaySection {
         <div (click)="display(DisplaySection.Heroes)">Heroes</div>
       </section>
       <section *ngIf="currentDisplay === DisplaySection.Dashboard">
-        <app-dashboard></app-dashboard>
+        <app-dashboard
+          [heroesFavoriteList]="heroesFavoriteList"
+        ></app-dashboard>
       </section>
       <section class="heroes-app">
         <ng-container *ngIf="currentDisplay === DisplaySection.Heroes">
@@ -38,9 +40,11 @@ export class HomeComponent {
   currentDisplay = DisplaySection.Heroes;
   heroServices = inject(HeroService);
   heroesList: Hero[];
+  heroesFavoriteList: Hero[] = [];
 
   constructor() {
     this.heroesList = this.heroServices.getHeroes();
+    this.heroesFavoriteList = this.heroServices.getFavoriteHero();
   }
 
   display(section: DisplaySection) {

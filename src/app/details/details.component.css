@@ -61,3 +61,7 @@ ul {
 li {
   list-style-type: disc;
 }
+
+.material-symbols-outlined {
+  cursor: pointer;
+}
