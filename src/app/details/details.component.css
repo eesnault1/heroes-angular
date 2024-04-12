@@ -21,10 +21,16 @@
 .hero-city,
 .hero-powers,
 .form-group,
+.hero-favorite,
 .form-powers {
   margin-bottom: 15px;
 }
 
+.hero-favorite {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 .form-control {
   width: 100%;
   padding: 10px;

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Hero } from '../herostypes';
 import { HeroService } from '../hero.service';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 import {
   FormArray,
   FormControl,
@@ -18,19 +19,40 @@ enum Modify {
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatIconModule],
   template: `
     <div class="modifier-link" (click)="modify()">Modifier</div>
 
     <div *ngIf="currentDisplay === Modify.Div" class="hero-display">
       <div class="hero-id">ID: {{ hero.id }}</div>
+
       <div class="hero-name">Name: {{ hero.name }}</div>
       <div class="hero-city">City: {{ hero.city }}</div>
+
       <div class="hero-powers">
         Powers:
         <ul>
           <li *ngFor="let power of hero.powers">{{ power }}</li>
         </ul>
+      </div>
+      <div>
+        <div *ngIf="hero.favorite; else elseBlock" class="hero-favorite">
+          Delete from favorite
+          <mat-icon (click)="toggleHeroFavorite()">
+            <span class="material-symbols-outlined" style="color: yellow;">
+              star
+            </span>
+          </mat-icon>
+        </div>
+
+        <ng-template #elseBlock>
+          <div class="hero-favorite">
+            Add to favorite
+            <mat-icon (click)="toggleHeroFavorite()">
+              <span class="material-symbols-outlined"> star </span>
+            </mat-icon>
+          </div>
+        </ng-template>
       </div>
     </div>
 
@@ -124,9 +146,14 @@ export class DetailsComponent {
       this.hero.id,
       this.heroForm.value.name ?? '',
       this.heroForm.value.city ?? '',
-      this.powerArray.value ?? []
+      this.powerArray.value ?? [],
+      false
     );
     this.loadHero();
     this.modify();
+  }
+
+  toggleHeroFavorite() {
+    this.heroService.toggleFavorite(this.hero.id);
   }
 }

@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
   template: `
     <h1 class="main-title" [routerLink]="['']">Tour of Heroes</h1>
     <section>
-      <router-outlet></router-outlet>
+      <router-outlet> </router-outlet>
     </section>
   `,
   styleUrl: './app.component.css',

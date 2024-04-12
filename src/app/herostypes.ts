@@ -3,4 +3,5 @@ export interface Hero {
   name: string;
   powers: string[];
   city: string;
+  favorite: boolean;
 }
